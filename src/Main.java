@@ -3,6 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     private static int MaxSymbolsInWord = 30;
@@ -11,6 +12,9 @@ public class Main {
         Path pathname = Paths.get("src/Input.txt");
         String data = Files.readString(pathname);
         List<String> words = SplitByEverything(data);
+
+        words = words.stream().distinct().collect(Collectors.toList());
+
         words = GetWordWithMostLength(words);
 
         System.out.println(words);
